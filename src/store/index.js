@@ -1,4 +1,4 @@
-import axios from '../axios'
+import axios from '../utils/axios'
 const GET_LIST = 'INDEX/GET_LIST'
 const changeList = list => ({
   type: GET_LIST,

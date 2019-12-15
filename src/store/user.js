@@ -1,4 +1,4 @@
-import axios from '../axios'
+import axios from '../utils/axios'
 
 const GET_USERINFO = 'INDEX/GET_USERINFO'
 const changeUserinfo = data => ({
