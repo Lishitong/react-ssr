@@ -3,13 +3,14 @@ import {Route} from 'react-router-dom'
 import Index from './contanier/Index'
 import About from './contanier/About'
 import User from './contanier/User'
+import Notfound from './contanier/Notfound'
 import './App.css'
 
 export default [
   {
     path:'/',
     component: Index,
-    // exact:true,
+    exact:true,
     key:'index'
   },
   {
@@ -23,6 +24,9 @@ export default [
     component: User,
     exact:true,
     key:'user'
+  },
+  {
+    component: Notfound
   }
 ]
 

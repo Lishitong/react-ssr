@@ -24,8 +24,8 @@ app.get('*', (req, res) => {
     if (match) {
       const { loadData } = route.component
       if (loadData) {
-        const promise = new Promise((resolve, reject)=>{
-         loadData(store).then(resolve).catch(resolve)
+        const promise = new Promise((resolve, reject) => {
+          loadData(store).then(resolve).catch(resolve)
         })
         promises.push(promise)
       }
@@ -33,9 +33,12 @@ app.get('*', (req, res) => {
   });
 
   Promise.all(promises).then(() => {
+
+    const context = {}
+
     const content = renderToString(
       <Provider store={store}>
-        <StaticRouter location={req.url}>
+        <StaticRouter location={req.url} context={context}>
           <Header></Header>
           <Switch>
             {routes.map(route => <Route {...route}></Route>)}
@@ -43,6 +46,14 @@ app.get('*', (req, res) => {
         </StaticRouter>
       </Provider>
     )
+
+    if (context.statuscode) {
+      res.status(context.statuscode)
+    }
+
+    if (context.action === 'REPLACE') {
+      res.redirect(301, context.url)
+    }
     res.send(`
     <html>
       <head>
