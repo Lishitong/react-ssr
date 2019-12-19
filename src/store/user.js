@@ -1,4 +1,4 @@
-import axios from '../utils/axios'
+// import axios from '../utils/axios'
 
 const GET_USERINFO = 'INDEX/GET_USERINFO'
 const changeUserinfo = data => ({
@@ -8,7 +8,7 @@ const changeUserinfo = data => ({
 
 export const getUserInfo = server => {
   return (dispatch, getState, axiosInstance) => {
-    return axios.get('/api/user/info')
+    return axiosInstance.get('/api/user/info')
     .then(res=>{
       const {data} = res.data
       dispatch(changeUserinfo(data))

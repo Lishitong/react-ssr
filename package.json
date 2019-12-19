@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run dev:client\" \"npm run dev:server\" \"npm run dev:start\"",
+    "start": "concurrently \"npm run dev:client\" \"npm run dev:server\" \"npm run dev:start\" \"nodemon mock.js\"",
     "dev:server": "webpack --config ./config/webpack.server.js --watch",
     "dev:start": "nodemon --watch build --exec node \"./build/bundle.js\"",
     "dev:client": "webpack --config ./config/webpack.client.js --watch"
@@ -16,7 +16,10 @@
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
+    "css-loader": "^3.4.0",
     "http-proxy-middleware": "^0.20.0",
+    "isomorphic-style-loader": "^5.1.0",
+    "style-loader": "^1.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-merge": "^4.2.2",

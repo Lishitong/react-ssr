@@ -1,10 +1,10 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { StaticRouter, matchPath, Route } from 'react-router-dom'
+import { StaticRouter, matchPath, Route, Switch } from 'react-router-dom'
 import express from 'express'
 import routes from '../src/App'
 import { Provider } from 'react-redux'
-import {getServerStore} from '../src/store/store'
+import { getServerStore } from '../src/store/store'
 import Header from '../src/component/Header'
 import proxy from 'http-proxy-middleware'
 
@@ -17,14 +17,17 @@ app.use(
   proxy({ target: 'http://localhost:9090', changeOrigin: true })
 )
 app.get('*', (req, res) => {
-  
+
   const promises = [];
   routes.some(route => {
     const match = matchPath(req.path, route);
     if (match) {
-      const {loadData} = route.component
-      if(loadData){
-        promises.push(loadData(store))
+      const { loadData } = route.component
+      if (loadData) {
+        const promise = new Promise((resolve, reject)=>{
+         loadData(store).then(resolve).catch(resolve)
+        })
+        promises.push(promise)
       }
     }
   });
@@ -34,7 +37,9 @@ app.get('*', (req, res) => {
       <Provider store={store}>
         <StaticRouter location={req.url}>
           <Header></Header>
-          {routes.map(route=><Route {...route}></Route>)}
+          <Switch>
+            {routes.map(route => <Route {...route}></Route>)}
+          </Switch>
         </StaticRouter>
       </Provider>
     )

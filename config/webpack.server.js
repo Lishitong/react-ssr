@@ -11,5 +11,14 @@ module.exports = merge(common, {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '../build')
+  },
+  module:{
+    rules:[{
+      test: /\.css$/,
+      use: [
+        'isomorphic-style-loader',
+        'css-loader'
+      ]
+    }]
   }
 })

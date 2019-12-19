@@ -1,4 +1,4 @@
-import axios from '../utils/axios'
+// import axios from '../utils/axios'
 const GET_LIST = 'INDEX/GET_LIST'
 const changeList = list => ({
   type: GET_LIST,
@@ -7,7 +7,7 @@ const changeList = list => ({
 
 export const getIndexList = server => {
   return (dispatch, getState, axiosInstance) => {
-    return axios.get('/api/course/list')
+    return axiosInstance.get('/api/course/list')
     .then(res=>{
       const {list} = res.data
       dispatch(changeList(list))

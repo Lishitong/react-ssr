@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom'
 import Index from './contanier/Index'
 import About from './contanier/About'
 import User from './contanier/User'
+import './App.css'
 
 export default [
   {

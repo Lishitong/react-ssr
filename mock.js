@@ -16,7 +16,7 @@ app.get('/api/course/list', (req, res) => {
   })
 })
 
-app.get('/api/user/info', (req, res) => {
+app.get('/api/user/info1', (req, res) => {
   console.log(req.url)
   // res.header('Access-Control-Allow-Origin', '*')
   // res.header('Access-Control-Allow-Methods', 'GET')
@@ -27,9 +27,9 @@ app.get('/api/user/info', (req, res) => {
   })
 })
 
-app.get('/api/*', (req, res) => {
-  res.json({ code: 0, data: `${req.url} error` })
-})
+// app.get('/api/*', (req, res) => {
+//   res.json({ code: 0, data: `${req.url} error` })
+// })
 
 app.listen(9090, () => {
   console.log('mock')
