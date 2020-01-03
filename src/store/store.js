@@ -5,11 +5,11 @@ import userReducer from './user'
 import axios from 'axios'
 
 
-const axiosServer = axios.create({
+const axiosClient = axios.create({
   baseURL:'/'
 })
-const axiosClient = axios.create({
-  baseURL:'http://localhost:9093'
+const axiosServer = axios.create({
+  baseURL:'http://localhost:9090'
 })
 const reducer = combineReducers({
   index: indexReducer,

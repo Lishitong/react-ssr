@@ -4,7 +4,6 @@ import Index from './contanier/Index'
 import About from './contanier/About'
 import User from './contanier/User'
 import Notfound from './contanier/Notfound'
-import './App.css'
 
 export default [
   {
@@ -26,7 +25,8 @@ export default [
     key:'user'
   },
   {
-    component: Notfound
+    component: Notfound,
+    key:'notfound'
   }
 ]
 
